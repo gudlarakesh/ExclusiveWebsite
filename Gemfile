@@ -46,4 +46,6 @@ end
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'jquery-turbolinks'
+gem 'simple_form'
+gem 'annotate'
 

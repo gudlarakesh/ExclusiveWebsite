@@ -5,5 +5,10 @@
       There are 4 people waiting in queue. <br>
       Join the Queue...
     </p>
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :name, label: false, placeholder: "Your Name.." %>
+      <%= f.input :email, label: false, placeholder: "Your Email..." %>
+      <%= f.submit "Join the Queue", class: "btn" %>
+    <% end %>
   </div>
 </div>
