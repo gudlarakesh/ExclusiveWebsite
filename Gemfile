@@ -41,6 +41,7 @@ gem 'sqlite3'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'whenever', :require => false
 end
 
 group :production do
