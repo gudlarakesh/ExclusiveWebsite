@@ -6,6 +6,7 @@ class HomeController < ApplicationController
     else
       @second_left = 0
     end
+    @ticket_no = User.count + 1
     @user = User.new
   end
 

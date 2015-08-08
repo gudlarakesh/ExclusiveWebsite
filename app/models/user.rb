@@ -12,4 +12,11 @@
 class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true, format: {with: /\A[a-zA-Z][\w\.\+-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]\z/}
+
+   before_create :set_token_time
+
+private
+  def set_token_time
+    self.ticket_no = User.count + 1
+  end
 end
