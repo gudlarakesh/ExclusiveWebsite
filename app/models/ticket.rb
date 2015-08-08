@@ -7,16 +7,22 @@
 #  email      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  ticket_no  :string
+#  integer    :string
+#  active     :boolean          default(TRUE)
 #
 
 class Ticket < ActiveRecord::Base
-
-  scope :active, -> {where(active: true)}
+  scope :waiting, -> {where(waiting: true)}
 
   validates :name, presence: true
   validates :email, presence: true, format: {with: /\A[a-zA-Z][\w\.\+-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]\z/}
 
-   before_create :set_token_time
+  before_create :set_token_time
+
+  def activate!
+    CurrentTicket.fetch.set_ticket(self)
+  end
 
 private
   def set_token_time

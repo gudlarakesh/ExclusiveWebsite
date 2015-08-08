@@ -1,7 +1,8 @@
 class TicketsController < ApplicationController
   def create
-    @ticket= Ticket.new(user_params)
+    @ticket = Ticket.new(ticket_params)
     if @ticket.save
+      @ticket.activate! unless Ticket.waiting.any?
       redirect_to ticket_path(@ticket)
     else
       redirect_to root_path, alert: "Please enter your name and email"
@@ -10,6 +11,7 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = Ticket.find(params[:id])
+    @seconds_left = CurrentTicket.seconds_left
   end
 
 private

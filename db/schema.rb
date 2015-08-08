@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808043738) do
+ActiveRecord::Schema.define(version: 20150808055701) do
+
+  create_table "current_tickets", force: :cascade do |t|
+    t.integer  "ticket_id"
+    t.datetime "activated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "current_tickets", ["ticket_id"], name: "index_current_tickets_on_ticket_id"
 
   create_table "tickets", force: :cascade do |t|
     t.string   "name"
@@ -20,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150808043738) do
     t.datetime "updated_at",                null: false
     t.string   "ticket_no"
     t.string   "integer"
-    t.boolean  "active",     default: true
+    t.boolean  "waiting",    default: true
   end
 
 end
