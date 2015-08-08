@@ -1,16 +1,13 @@
 class HomeController < ApplicationController
   def welcome
-    if Ticket.any?
-      token_time = Ticket.first.created_at + Ticket.count.minutes
-      @seconds_left = (token_time - Time.now).to_i
+    if Ticket.active.any?
+      @waiting_count = Ticket.active.count
+      @current_ticket = Ticket.active.first
+      @new_ticket = Ticket.new
+      @new_ticket.ticket_no = Ticket.count + 1
+      @seconds_left = 54      
     else
-      @second_left = 0
+      @seconds_left = 0
     end
-    @ticket_no = Ticket.count + 1
-    @ticket = Ticket.new
-  end
-
-  def waiting
-    
   end
 end

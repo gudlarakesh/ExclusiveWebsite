@@ -10,6 +10,9 @@
 #
 
 class Ticket < ActiveRecord::Base
+
+  scope :active, -> {where(active: true)}
+
   validates :name, presence: true
   validates :email, presence: true, format: {with: /\A[a-zA-Z][\w\.\+-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]\z/}
 
