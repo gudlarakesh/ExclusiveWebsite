@@ -3,7 +3,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
     if @ticket.save
       @ticket.activate! unless Ticket.waiting.any?
-      redirect_to ticket_path(@ticket)
+      redirect_to ticket_path(@ticket, code: @ticket.code)
     else
       redirect_to root_path, alert: "Please enter your name and email"
     end
